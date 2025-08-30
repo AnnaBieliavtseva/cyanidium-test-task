@@ -1,0 +1,19 @@
+{
+    "extends": [
+        "next/core-web-vitals",
+        "eslint:recommended"
+    ],
+    "rules": {
+        "@next/next/no-img-element": "off",
+        "react/jsx-key": "error",
+        "no-console": [
+            "warn",
+            {
+                "allow": [
+                    "warn",
+                    "error"
+                ]
+            }
+        ]
+    }
+}

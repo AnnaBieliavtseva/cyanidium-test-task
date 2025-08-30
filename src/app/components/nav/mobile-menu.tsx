@@ -1,0 +1,91 @@
+'use client'
+import { useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
+import { MenuIcon } from '../icons/Menu'
+import { CrossIcon } from '../icons/Cross'
+
+export function MobileMenu() {
+  const [open, setOpen] = useState(false)
+  const panelRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false)
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [])
+
+  useEffect(() => {
+    document.documentElement.style.overflow = open ? 'hidden' : ''
+  }, [open])
+
+  return (
+    <>
+      <button
+        aria-label={open ? 'Close menu' : 'Open menu'}
+        onClick={() => setOpen((v) => !v)}
+        className="relative z-[60] inline-flex h-8 w-8 items-center justify-center  text-white hover:bg-white/10 md:hidden"
+      >
+        {open ? (
+          <CrossIcon className="h-5 w-5" />
+        ) : (
+          <MenuIcon className="h-9 w-9" />
+        )}
+      </button>
+      {open && (
+        <div
+          className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm md:hidden"
+          onClick={() => setOpen(false)}
+          aria-hidden="true"
+        />
+      )}
+
+      <div
+        ref={panelRef}
+        className={`text-whitetranslate-x-full fixed top-0 right-0 z-50 h-dvh w-[78%] max-w-[320px] bg-[#0b0b10] p-5 text-white shadow-xl transition-transform md:hidden ${
+          open ? 'translate-x-0' : 'translate-x-full'
+        }`}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile navigation"
+      >
+        <nav className="mt-10 flex flex-col gap-3 text-base">
+          <Link
+            href="/structure"
+            className="rounded-md px-2 py-2 hover:bg-white/10"
+            onClick={() => setOpen(false)}
+          >
+            Структура
+          </Link>
+          <Link
+            href="/about"
+            className="rounded-md px-2 py-2 hover:bg-white/10"
+            onClick={() => setOpen(false)}
+          >
+            Обо мне
+          </Link>
+          <Link
+            href="/benefits"
+            className="rounded-md px-2 py-2 hover:bg-white/10"
+            onClick={() => setOpen(false)}
+          >
+            Плюсы
+          </Link>
+          <Link
+            href="/reviews"
+            className="rounded-md px-2 py-2 hover:bg-white/10"
+            onClick={() => setOpen(false)}
+          >
+            Отзывы
+          </Link>
+          <Link
+            href="/faq"
+            className="rounded-md px-2 py-2 hover:bg-white/10"
+            onClick={() => setOpen(false)}
+          >
+            FAQ
+          </Link>
+        </nav>
+      </div>
+    </>
+  )
+}

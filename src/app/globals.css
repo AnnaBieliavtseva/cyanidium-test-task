@@ -1,0 +1,81 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui;
+  --font-logo: var(--font-logo), var(--font-sans);
+  --font-alt: var(--font-alt), var(--font-sans);
+
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+
+  --color-brand-500: #7375ff;
+  --color-accent-500: #e56f8c;
+  --color-accent-400: #df93ff;
+  --color-info: #5bdbfd;
+  --color-logo-dark: #36285d;
+  --color-bg: #0c0117;
+  --color-fg: #ffffff;
+  --color-muted-500: #c5c5c5;
+
+  --gradient-hero: linear-gradient(
+    90deg,
+    #5bdbfd 0%,
+    #7375ff 40%,
+    #df93ff 80%,
+    #e56f8c 100%
+  );
+
+  --gradient-logo: linear-gradient(
+    90deg,
+    #90e8ff 0%,
+    #9c9eff 40%,
+    #e3a1ff 80%,
+    #e56f8c 100%
+  );
+}
+
+.font-logo {
+  font-family: var(--font-logo);
+}
+.font-alt {
+  font-family: var(--font-alt);
+}
+
+.text-gradient {
+  background: var(--gradient-logo);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+@media (width >= 768px) {
+  .md\:text-gradient {
+    background: var(--gradient-logo);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+  }
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  color: var(--color-fg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px oklch(var(--color-brand-500) / 1);
+}
