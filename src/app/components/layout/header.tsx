@@ -2,12 +2,12 @@ import Link from 'next/link'
 import { Container } from './container'
 import { LanguageSwitcher } from '../nav/language-switcher'
 import { MobileMenu } from '../nav/mobile-menu'
-import { Button } from '../ui/button'
+import { BuyCtaHeader } from '../cta/buy-cta-header'
 
 export function Header() {
   return (
-    <header className="sticky top-[50px] z-50 pt-[env(safe-area-inset-top)] md:top-[40px]">
-      <Container className="flex items-center justify-between text-sm md:py-[10px]">
+    <header className="mt-12.5 z-50 pt-[env(safe-area-inset-top)] md:mt-10 ">
+      <Container className="flex items-center justify-between text-sm px-10 md:px-5 lg:px-10 md:py-[10px]">
         <Link href="/" aria-label="Go to home page">
           <p className="font-logo text-base leading-none uppercase lg:text-lg">
             Aleko{' '}
@@ -54,13 +54,7 @@ export function Header() {
 
           <MobileMenu />
         </div>
-        <Button
-          variant="gradient"
-          size="md"
-          className="md:inline-block md:px:2 hidden lg:px-10"
-        >
-          Купить со скидкой
-        </Button>
+        <BuyCtaHeader />
       </Container>
     </header>
   )

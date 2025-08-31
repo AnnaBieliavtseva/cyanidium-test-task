@@ -9,7 +9,7 @@
   --radius-2xl: 1.25rem;
 
   --color-brand-500: #7375ff;
-  --color-accent-500: #e56f8c;
+  --color-accent-500: #FF4A77;
   --color-accent-400: #df93ff;
   --color-info: #5bdbfd;
   --color-logo-dark: #36285d;
@@ -17,7 +17,8 @@
   --color-fg: #ffffff;
   --color-muted-500: #c5c5c5;
 
-  --gradient-hero: linear-gradient(
+  /* gr2 */
+  --gradient-secondary: linear-gradient(
     90deg,
     #5bdbfd 0%,
     #7375ff 40%,
@@ -25,7 +26,7 @@
     #e56f8c 100%
   );
 
-  --gradient-logo: linear-gradient(
+  --gradient-primary: linear-gradient(
     90deg,
     #90e8ff 0%,
     #9c9eff 40%,
@@ -42,17 +43,17 @@
 }
 
 .text-gradient {
-  background: var(--gradient-logo);
+  background: var(--gradient-primary);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   -webkit-text-fill-color: transparent;
-  display: inline-block;
+
 }
 
 @media (width >= 768px) {
   .md\:text-gradient {
-    background: var(--gradient-logo);
+    background: var(--gradient-primary);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -78,4 +79,17 @@ body {
 :focus-visible {
   outline: none;
   box-shadow: 0 0 0 2px oklch(var(--color-brand-500) / 1);
+}
+
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); } /* т.к. дублируем контент */
+}
+
+/* утилита-маска для плавного исчезновения по краям ленты */
+.marquee-mask{
+  --mask: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  mask-image: var(--mask);
+  -webkit-mask-image: var(--mask);
 }

@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils'
 import { logo, manrope, raleway } from './fonts'
 import { ThemeProvider } from './components/theme-provider'
 import { Header } from './components/layout/header'
+import { ModalProvider } from './components/ui/modal-provider'
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -44,8 +45,10 @@ export default function RootLayout({
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Header />
-          <main className="container grow">{children}</main>
+          <ModalProvider>
+            <Header />
+            <main className="container grow">{children}</main>
+          </ModalProvider>
         </ThemeProvider>
       </body>
     </html>

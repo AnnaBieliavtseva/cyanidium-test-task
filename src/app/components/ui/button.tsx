@@ -64,7 +64,7 @@ export function Button(props: ButtonProps) {
     ghost: 'bg-transparent text-white hover:bg-white/10',
     outline: 'border border-white/20 text-white hover:bg-white/5',
     gradient:
-      '[background:var(--gradient-logo)] text-white hover:brightness-110',
+      '[background:var(--gradient-primary)] text-white hover:brightness-110',
   }
 
   const classes = cn(
