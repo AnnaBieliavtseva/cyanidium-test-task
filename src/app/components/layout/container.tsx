@@ -1,11 +1,17 @@
 import { cn } from '@/lib/utils'
-export function Container({
-  className,
-  ...props
-}: React.ComponentProps<'div'>) {
+
+type Props = React.ComponentProps<'div'> & {
+  bleed?: boolean
+}
+
+export function Container({ className, bleed = false, ...props }: Props) {
   return (
     <div
-      className={cn('mx-auto w-full max-w-[1200px] px-6', className)}
+      className={cn(
+       
+        bleed ? 'w-full' : 'mx-auto w-full max-w-screen-2xl px-10 md:px-6 lg:px-20', 
+        className,
+      )}
       {...props}
     />
   )

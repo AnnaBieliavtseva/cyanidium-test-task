@@ -3,15 +3,41 @@
 import Image from 'next/image'
 import { Container } from '../layout/container'
 import { BuyCta } from '../cta/buy-cta'
+import { ColorBlobs } from '../ui/color-blobs'
 
 export function Hero() {
   return (
     <section className="relative">
-      <Container className="md:px-5 lg:px-10">
+      <Container>
         <div className="flex flex-col md:flex-row md:items-start">
+          <ColorBlobs
+            items={[
+              {
+                preset: 'blue',
+                size: 'sm',
+                className: 'md:hidden bottom-35 -left-3',
+              },
+              {
+                preset: 'violet',
+                size: 'sm',
+                className: 'md:hidden top-25 -right-8',
+              },
+              {
+                preset: 'violet',
+                size: 'lg',
+                className: 'hidden md:block -bottom-50 -right-3',
+              },
+              {
+                preset: 'blue',
+                size: 'sm',
+                className: 'md:hidden -bottom-25 -right-3',
+              },
+            ]}
+          />
+
           <div className="relative md:w-[460px] md:min-w-[460px] xl:w-[644px] xl:min-w-[644px]">
             <div className="relative inline-block w-full">
-              <div className="relative mb-0 overflow-hidden rounded-[38px]">
+              <div className="relative mb-0 rounded-[38px]">
                 <picture>
                   <source
                     srcSet="/hero-mob.webp"
@@ -40,7 +66,7 @@ export function Hero() {
                 </div>
               </div>
 
-              <div className="absolute top-[210px] left-[410px] hidden space-y-6 md:block lg:top-[210px] lg:left-[430px] xl:top-[225px] xl:left-[570px]">
+              <div className="absolute top-[210px] left-[410px] hidden space-y-6 md:block lg:top-[212px] lg:left-[430px] xl:top-[223px] xl:left-[570px]">
                 <p className="text-gradient text-2xl font-bold xl:text-[32px]">
                   От 0 до 100,000 за 90 дней
                 </p>
@@ -61,7 +87,7 @@ export function Hero() {
                   variant="light"
                   size="xl"
                   className="w-full md:max-w-[390px] xl:max-w-[534px]"
-                  //   rightBadge="-50%"
+                  rightBadge="-50%"
                 >
                   Купить со скидкой
                 </BuyCta>
@@ -79,7 +105,7 @@ export function Hero() {
           </div>
 
           <div className="ml-5 hidden flex-1 md:block lg:mt-5 lg:ml-10 xl:mt-[84px]">
-            <p className="text-lg">
+            <p className="text-lg lg:max-w-[396px]">
               Станьте известным всего за 3&nbsp;месяца без затрат на рекламу!
               Узнайте ключ к созданию вирусного контента и превратите свои идеи
               в миллионные просмотры.
@@ -88,7 +114,7 @@ export function Hero() {
         </div>
 
         <div className="md:hidden">
-          <p className="mb-8 text-center text-[52px] font-extrabold">
+          <p className="mb-8 text-center text-[50px] font-extrabold">
             ВИРУСНЫХ ВИДЕО
           </p>
           <p className="mb-11 text-center text-sm">
@@ -97,8 +123,14 @@ export function Hero() {
             миллионные просмотры.
           </p>
 
-          <div className="mx-auto mb-3 w-full max-w-[520px] space-y-2">
-            <BuyCta source="hero" variant="light" size="xl" className="w-full">
+          <div className="mx-auto w-full max-w-[520px] space-y-2">
+            <BuyCta
+              source="hero"
+              variant="light"
+              size="xl"
+              className="w-full"
+              rightBadge="-50%"
+            >
               Купить со скидкой
             </BuyCta>
 

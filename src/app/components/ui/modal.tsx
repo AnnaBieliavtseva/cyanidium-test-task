@@ -2,6 +2,8 @@
 import * as React from 'react'
 import { createPortal } from 'react-dom'
 import { cn } from '@/lib/utils'
+import { CrossIcon } from '../icons/Cross'
+import { ColorBlobs } from './color-blobs'
 
 type ModalProps = {
   open: boolean
@@ -18,12 +20,10 @@ export function Modal({
   className,
   children,
 }: ModalProps) {
-  const ref = React.useRef<HTMLDivElement>(null)
+ 
   const [mounted, setMounted] = React.useState(false)
 
-  
   React.useEffect(() => setMounted(true), [])
-
 
   React.useEffect(() => {
     if (!open) return
@@ -32,7 +32,6 @@ export function Modal({
     return () => document.removeEventListener('keydown', onKey)
   }, [open, onClose])
 
- 
   React.useEffect(() => {
     if (!open) return
     const prev = document.documentElement.style.overflow
@@ -46,49 +45,54 @@ export function Modal({
   return createPortal(
     open ? (
       <div
-        className="fixed inset-0 z-[70] flex items-center justify-center p-4"
+        className="fixed inset-0 z-[70] flex items-center justify-center"
         role="dialog"
         aria-modal="true"
         aria-label={title}
       >
-  
         <div
-          className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+          className="absolute inset-0 [background:var(--color-bg)]"
           onClick={onClose}
           aria-hidden="true"
         />
 
- 
         <div
-          ref={ref}
           className={cn(
-            'relative w-full max-w-[520px] rounded-[24px] border border-white/10 p-6 text-white',
-            'shadow-[0_0_40px_rgba(255,255,255,.06)_inset] [background:radial-gradient(120%_120%_at_50%_0%,rgba(255,255,255,0.06)_0%,rgba(255,255,255,0.02)_60%,rgba(0,0,0,0.5)_100%)]',
+            'relative z-[71] mx-auto w-full h-full md:max-w-[410px] md:mt-20',
+            'overflow-hidden rounded-[28px]',
+            ' [background:var(--color-bg)]',
+            'p-0',
             className,
           )}
         >
-          {/* close */}
+          <ColorBlobs
+            items={[
+              {
+                preset: 'blue',
+                size: 'sm',
+                className: 'md:hidden top-40 -left-6',
+              },
+              {
+                preset: 'violet',
+                size: 'sm',
+                className: 'md:hidden bottom-24 -right-8',
+              },
+            ]}
+          />
           <button
             onClick={onClose}
             aria-label="Закрыть"
-            className="absolute top-4 right-4 inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-white/10"
+            className="absolute z-20 top-8 right-6 inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-md hover:bg-white/10"
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M6 6l12 12M18 6l-12 12"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-            </svg>
+            <CrossIcon />
           </button>
 
           {title && (
-            <h2 className="mb-4 text-center text-xl font-extrabold uppercase">
+            <h2 className="mb-4 text-center text-2xl font-bold uppercase">
               {title}
             </h2>
           )}
-          {children}
+          <div className="relative z-10 h-full md:h-[491px]">{children}</div>
         </div>
       </div>
     ) : null,

@@ -9,7 +9,7 @@ type Variants =
   | 'accent'
   | 'light'
   | 'ghost'
-  | 'outline'
+  | 'gradientSecondary'
   | 'gradient'
 type Sizes = 'sm' | 'md' | 'lg' | 'xl'
 
@@ -44,25 +44,33 @@ export function Button(props: ButtonProps) {
     ...rest
   } = props as BaseProps & (AsButtonProps | AsLinkProps)
 
+  const padWithBadge: Record<Sizes, string> = {
+    sm: 'pr-10',
+    md: 'pr-12',
+    lg: 'pr-12',
+    xl: 'pr-14',
+  }
+
   const base =
-    'inline-flex items-center justify-center cursor-pointer gap-2 rounded-[999px] font-semibold transition-colors ' +
+    'relative inline-flex items-center justify-center cursor-pointer gap-2 rounded-[999px] font-semibold transition-colors ' +
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ' +
     'focus-visible:ring-[var(--color-brand-500)] disabled:opacity-50 disabled:cursor-not-allowed'
 
   const sizes: Record<Sizes, string> = {
     sm: 'h-9 px-4 text-xs',
     md: 'h-10 px-4 text-sm',
-    lg: 'h-12 px-6 text-base',
-    xl: 'h-14 px-7 text-base',
+    lg: 'h-12.5 px-6 text-sm font-semibold',
+    xl: 'h-15 px-7 text-base',
   }
 
   const variants: Record<Variants, string> = {
     primary: 'bg-[var(--color-brand-500)] text-white hover:brightness-110',
     accent: 'bg-[var(--color-accent-500)] text-white hover:brightness-110',
     light:
-      'bg-white text-neutral-900 hover:bg-white/90 shadow-[0_1px_0_rgba(255,255,255,.3),0_-1px_0_rgba(0,0,0,.15)_inset]',
+      'bg-[var(--color-fg)] text-[var(--color-bg)] hover:bg-white/90 shadow-[0_1px_0_rgba(255,255,255,.3),0_-1px_0_rgba(0,0,0,.15)_inset]',
     ghost: 'bg-transparent text-white hover:bg-white/10',
-    outline: 'border border-white/20 text-white hover:bg-white/5',
+    gradientSecondary:
+      '[background:var(--gradient-secondary)] text-white hover:brightness-110',
     gradient:
       '[background:var(--gradient-primary)] text-white hover:brightness-110',
   }
@@ -72,8 +80,15 @@ export function Button(props: ButtonProps) {
     sizes[size],
     variants[variant],
     full && 'w-full',
+    rightBadge && padWithBadge[size], 
     className,
   )
+
+  const Badge = rightBadge ? (
+    <span className="pointer-events-none absolute top-1/2 right-0 inline-grid w-15 -translate-y-1/2 place-items-center rounded-full bg-[var(--color-accent-500)] h-full  font-semibold text-xl leading-none text-white shadow-[0_4px_14px_rgba(0,0,0,.25)] ">
+      {rightBadge}
+    </span>
+  ) : null
 
   if ('href' in rest && typeof rest.href === 'string') {
     const linkProps = rest as AsLinkProps
@@ -81,11 +96,7 @@ export function Button(props: ButtonProps) {
       <Link {...linkProps} className={classes} aria-busy={loading || undefined}>
         {leftIcon && <span className="shrink-0">{leftIcon}</span>}
         <span className="whitespace-nowrap">{children}</span>
-        {rightBadge && (
-          <span className="ml-3 inline-flex h-[2.2em] min-w-[2.2em] items-center justify-center rounded-full bg-[var(--color-accent-500)] px-2 text-[0.85em] leading-none text-white">
-            {rightBadge}
-          </span>
-        )}
+        {Badge}
       </Link>
     )
   }
@@ -99,11 +110,7 @@ export function Button(props: ButtonProps) {
     >
       {leftIcon && <span className="shrink-0">{leftIcon}</span>}
       <span className="whitespace-nowrap">{children}</span>
-      {rightBadge && (
-        <span className="ml-3 inline-flex h-[2.2em] min-w-[2.2em] items-center justify-center rounded-full bg-[var(--color-accent-500)] px-2 text-[0.85em] leading-none text-white">
-          {rightBadge}
-        </span>
-      )}
+      {Badge}
     </button>
   )
 }

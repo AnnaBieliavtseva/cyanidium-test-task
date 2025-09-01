@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { MenuIcon } from '../icons/Menu'
 import { CrossIcon } from '../icons/Cross'
 import { BuyCta } from '../cta/buy-cta'
+import { ColorBlobs } from '../ui/color-blobs'
 
 export function MobileMenu() {
   const [open, setOpen] = useState(false)
@@ -42,13 +43,25 @@ export function MobileMenu() {
 
       <div
         ref={panelRef}
-        className={`text-white translate-x-full fixed top-0 right-0 z-50 h-dvh w-[78%] max-w-[320px] bg-[#0b0b10] p-5 shadow-xl transition-transform md:hidden ${
-          open ? 'translate-x-0' : 'translate-x-full'
-        }`}
+        className={`fixed top-0 right-0 z-50 h-full w-full  transform-gpu bg-[var(--color-bg)] p-6 text-white shadow-xl transition-transform duration-300 ease-out md:hidden ${open ? 'translate-x-0' : 'translate-x-full'} `}
         role="dialog"
         aria-modal="true"
         aria-label="Mobile navigation"
       >
+         <ColorBlobs
+                    items={[
+                      {
+                        preset: 'blue',
+                        size: 'sm',
+                        className: 'md:hidden top-40 -left-6',
+                      },
+                      {
+                        preset: 'violet',
+                        size: 'sm',
+                        className: 'md:hidden bottom-24 -right-8',
+                      },
+                    ]}
+                  />
         <nav className="mt-10 flex flex-col gap-3 text-base">
           <Link
             href="/structure"
@@ -89,7 +102,7 @@ export function MobileMenu() {
             source="mobile-menu"
             variant="gradient"
             full
-            className="mt-4 md:hidden"
+            className="mt-4 max-w-[220px] md:hidden"
           />
         </nav>
       </div>

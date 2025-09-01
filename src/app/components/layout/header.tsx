@@ -6,10 +6,10 @@ import { BuyCtaHeader } from '../cta/buy-cta-header'
 
 export function Header() {
   return (
-    <header className="mt-12.5 z-50 pt-[env(safe-area-inset-top)] md:mt-10 ">
-      <Container className="flex items-center justify-between text-sm px-10 md:px-5 lg:px-10 md:py-[10px]">
+    <header className="z-70 mt-12.5 pt-[env(safe-area-inset-top)] md:mt-10">
+      <Container className="flex w-full items-center justify-between text-sm">
         <Link href="/" aria-label="Go to home page">
-          <p className="font-logo text-base leading-none uppercase lg:text-lg">
+          <p className="font-logo text-base leading-none font-bold uppercase lg:text-lg">
             Aleko{' '}
             <span className="md:text-gradient text-[var(--color-logo-dark)]">
               Sokurashvili

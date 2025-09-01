@@ -1,8 +1,7 @@
 'use client'
 
-import { Button } from "../ui/button"
-import { useModal } from "../ui/modal-provider"
-
+import { Button } from '../ui/button'
+import { useModal } from '../ui/modal-provider'
 
 type Props = {
   source?: string
@@ -11,6 +10,7 @@ type Props = {
   size?: React.ComponentProps<typeof Button>['size']
   full?: boolean
   children?: React.ReactNode
+  rightBadge?: string
 }
 
 export function BuyCta({
@@ -20,6 +20,7 @@ export function BuyCta({
   size = 'md',
   full,
   children = 'Купить со скидкой',
+  rightBadge,
 }: Props) {
   const { open } = useModal()
   return (
@@ -28,6 +29,7 @@ export function BuyCta({
       size={size}
       full={full}
       className={className}
+      rightBadge={rightBadge}
       onClick={() => open('purchase', { source })}
     >
       {children}

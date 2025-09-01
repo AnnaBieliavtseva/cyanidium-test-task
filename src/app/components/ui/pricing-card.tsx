@@ -41,7 +41,7 @@ export function PricingCard({
       'border-white/15 [background:linear-gradient(180deg,#88d6ff,40%,#9ba5ff_70%,#b2a7ff_100%)] text-white',
   }
 
-  const ctaVariant = variant === 'pro' ? 'outline' : 'light' 
+  const ctaVariant = variant === 'pro' ? 'accent' : 'light' 
   const ctaExtra =
     variant === 'expert' ? 'bg-white/90 text-neutral-900 hover:bg-white' : ''
 

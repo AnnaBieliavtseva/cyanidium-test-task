@@ -1,12 +1,28 @@
 'use client'
 
 import { Container } from '../layout/container'
+import { ColorBlobs } from '../ui/color-blobs'
 import { PricingCard } from '../ui/pricing-card'
 
 export function PricingSection() {
   return (
-    <section className="relative py-33 md:py-50">
-      <Container className="px-6 lg:px-20">
+    <section className="relative pt-33 pb-[76px] md:py-50">
+      <ColorBlobs
+        items={[
+          {
+            preset: 'violet',
+            size: 'lg',
+            className: 'hidden md:block -top-50 -right-3',
+          },
+          {
+            preset: 'blue',
+            size: 'sm',
+            className: 'md:hidden -top-25 -right-3',
+          },
+        ]}
+      />
+   
+      <Container className="px-10 xl:px-20">
         <h2 className="text-bold mb-7 text-center text-2xl uppercase md:mb-20 md:text-5xl">
           ТАРИФЫ
         </h2>

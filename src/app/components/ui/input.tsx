@@ -8,7 +8,6 @@ export type InputProps = Omit<
   React.InputHTMLAttributes<HTMLInputElement>,
   'size'
 > & {
-
   size?: Sizes
   error?: string
   left?: React.ReactNode
@@ -17,22 +16,33 @@ export type InputProps = Omit<
 
 export const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (
-    { className, type = 'text', size = 'md', error, left, right, id, ...props },
+    {
+      className,
+      type = 'text',
+      size = 'md',
+      error,
+      left,
+      right,
+      id,
+      required,
+      ...props
+    },
     ref,
   ) => {
     const sizes: Record<Sizes, string> = {
-      sm: 'h-9 text-xs px-3',
-      md: 'h-11 text-sm px-3.5',
-      lg: 'h-12 text-base px-4',
+      sm: 'h-[40px] text-[13px] px-3',
+      md: 'h-[46px] text-sm px-4',
+      lg: 'h-[52px] text-base px-5',
     }
 
     const withLeftPad = left ? 'pl-10' : ''
-    const withRightPad = right ? 'pr-10' : ''
+    const needsStar = required && !right
+    const withRightPad = right || needsStar ? 'pr-10' : ''
 
     return (
       <div className={cn('relative', className)}>
         {left && (
-          <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-white/60">
+          <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-black/50">
             {left}
           </span>
         )}
@@ -41,21 +51,30 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           id={id}
           type={type}
+          required={required}
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? `${id}-error` : undefined}
           className={cn(
-                    'w-full rounded-[999px] border border-white/15 bg-white/90 text-neutral-900 placeholder:text-neutral-500',
-            'shadow-[0_1px_0_rgba(255,255,255,.3),0_-1px_0_rgba(0,0,0,.12)_inset]',
-            'focus-visible:ring-2 focus-visible:ring-[var(--color-brand-500)] focus-visible:outline-none',
+            'peer w-full rounded-[14px] bg-white text-[#0C0117] placeholder:text-[#0C0117]/60',
+            'border border-transparent shadow-[0_10px_78px_1px_rgba(121,121,121,0.12)]',
+            'focus:ring-2 focus:ring-white/30 focus:outline-none',
             sizes[size],
             withLeftPad,
             withRightPad,
-            'dark:bg-white dark:text-neutral-900',
             error &&
-              'border-[var(--color-accent-500)] ring-1 ring-[var(--color-accent-500)]',
+              'ring-2 ring-[var(--color-accent-500)] focus:ring-[var(--color-accent-500)]',
           )}
           {...props}
         />
+
+        {needsStar && (
+          <span
+            aria-hidden
+            className="pointer-events-none absolute top-5 left-15 z-10 -translate-y-1/2 text-[var(--color-accent-500)] opacity-0 select-none peer-[&:placeholder-shown]:opacity-100"
+          >
+            *
+          </span>
+        )}
 
         {right && (
           <span className="absolute inset-y-0 right-3 flex items-center">
