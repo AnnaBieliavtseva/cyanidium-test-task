@@ -46,21 +46,14 @@ export function PurchaseForm({ onDone }: { onDone?: () => void }) {
       setValues((s) => ({ ...s, [field]: v }))
     }
 
-  const validateField = async (_field: keyof Values) => {
+  const validateField = async (field: keyof Values) => {
     try {
-      await schema.validate(values, { abortEarly: false })
-      setErrors({})
-      await new Promise((r) => setTimeout(r, 900))
-
-      toast.success('Спасибо! Мы скоро с вами свяжемся.')
-      onDone?.()
+      await schema.validateAt(field as string, values)
+      setErrors((e) => ({ ...e, [field]: undefined }))
     } catch (err) {
       if (err instanceof yup.ValidationError) {
-      } else {
-        toast.error('Не удалось отправить форму. Попробуйте позже.')
+        setErrors((e) => ({ ...e, [field]: err.message }))
       }
-    } finally {
-      setLoading(false)
     }
   }
 
@@ -82,6 +75,8 @@ export function PurchaseForm({ onDone }: { onDone?: () => void }) {
           }
         }
         setErrors(map)
+      } else {
+        toast.error('Не удалось отправить форму. Попробуйте позже.')
       }
     } finally {
       setLoading(false)
