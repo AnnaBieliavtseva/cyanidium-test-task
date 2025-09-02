@@ -3,6 +3,10 @@ import { Container } from './container'
 import { LanguageSwitcher } from '../nav/language-switcher'
 import { MobileMenu } from '../nav/mobile-menu'
 import { BuyCtaHeader } from '../cta/buy-cta-header'
+import { cn } from '@/lib/utils'
+import { NAV_ITEMS } from '../nav/items'
+
+const baseLinkClass = 'rounded-[var(--radius-xl)] px-2 py-1 hover:bg-white/10'
 
 export function Header() {
   return (
@@ -19,39 +23,18 @@ export function Header() {
 
         <div className="flex items-center justify-between gap-3">
           <nav className="hidden gap-4 text-xs md:flex md:gap-1.5 lg:mr-15.25 lg:gap-3 lg:text-base">
-            <Link
-              href="/structure"
-              className="rounded-[var(--radius-xl)] px-2 py-1 hover:bg-white/10"
-            >
-              Структура
-            </Link>
-            <Link
-              href="/about"
-              className="rounded-[var(--radius-xl)] px-2 py-1 hover:bg-white/10"
-            >
-              Обо мне
-            </Link>
-            <Link
-              href="/benefits"
-              className="rounded-[var(--radius-xl)] px-2 py-1 hover:bg-white/10"
-            >
-              Плюсы
-            </Link>
-            <Link
-              href="/reviews"
-              className="rounded-[var(--radius-xl)] px-2 py-1 hover:bg-white/10"
-            >
-              Отзывы
-            </Link>
-            <Link
-              href="/faq"
-              className="rounded-[var(--radius-xl)] px-2 py-1 hover:bg-white/10"
-            >
-              FAQ
-            </Link>
+            {NAV_ITEMS.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(baseLinkClass, item.className)}
+              >
+                {item.label}
+              </Link>
+            ))}
           </nav>
-          <LanguageSwitcher className="block" />
 
+          <LanguageSwitcher className="block" />
           <MobileMenu />
         </div>
         <BuyCtaHeader />

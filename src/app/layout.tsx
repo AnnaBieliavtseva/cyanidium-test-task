@@ -16,7 +16,6 @@ export const metadata: Metadata = {
     type: 'website',
     url: site.url,
     siteName: site.name,
-    images: [{ url: site.ogImage, width: 1200, height: 630 }],
   },
   alternates: {
     canonical: site.url,

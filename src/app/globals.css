@@ -19,15 +19,14 @@
 
   --color-accent-blue: rgba(19, 184, 255, 0.9);
   --color-accent-violet: rgba(167, 93, 243, 0.9);
-  
-  /* gr2 */
-    --gradient-secondary: linear-gradient(
-      90deg,
-      #5bdbfd 0%,
-      #7375ff 40%,
-      #df93ff 80%,
-      #e56f8c 100%
-    );
+
+  --gradient-secondary: linear-gradient(
+    -71deg,
+    #5bdbfd 0%,
+    #7375ff 40%,
+    #df93ff 80%,
+    #e56f8c 100%
+  );
 
   --gradient-primary: linear-gradient(
     90deg,
@@ -45,8 +44,23 @@
   font-family: var(--font-alt);
 }
 
+.color-dark {
+  color: var(--color-bg);
+}
+.bg-dark {
+  background-color: var(--color-bg);
+}
+
 .text-gradient {
   background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-secondary {
+  background: var(--gradient-secondary);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -84,17 +98,22 @@ body {
 }
 
 @keyframes marquee {
-  from { transform: translate3d(0,0,0); }
-  to   { transform: translate3d(-15%,0,0); } /* трек шириной 200% → уезжаем ровно на половину */
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-15%, 0, 0);
+  }
 }
 
-/* опционально: замедлить на md+, сделать адаптив */
 @media (min-width: 768px) {
-  .marquee-anim { animation: marquee 3s linear infinite; }
+  .marquee-anim {
+    animation: marquee 3s linear infinite;
+  }
 }
 
-
-/* уважаем системную настройку */
 @media (prefers-reduced-motion: reduce) {
-  .marquee-anim { animation: none; }
+  .marquee-anim {
+    animation: none;
+  }
 }

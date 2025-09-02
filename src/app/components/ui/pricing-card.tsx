@@ -1,9 +1,11 @@
 'use client'
 import { cn } from '@/lib/utils'
-import { BuyCta } from '../cta/buy-cta';
+import { BuyCta } from '../cta/buy-cta'
+import { ColorBlobs } from './color-blobs'
 
 type Badge = { text: string; right?: boolean }
 type Feature = { text: string }
+type ColorBlobItem = React.ComponentProps<typeof ColorBlobs>['items'][number]
 
 type Variant = 'basic' | 'pro' | 'expert'
 
@@ -17,88 +19,143 @@ export function PricingCard({
   features,
   ctaText = 'Купить',
   className,
+  blobs,
+  blobsClassName,
 }: {
   variant: Variant
   title: string
   price: string
   oldPrice?: string
-  badge?: Badge 
-  subBadge?: Badge 
+  badge?: Badge
+  subBadge?: Badge
   features: Feature[]
   ctaText?: string
   className?: string
+  blobs?: ColorBlobItem[]
+  blobsClassName?: string
 }) {
-
   const base =
-    'relative flex h-full flex-col justify-between rounded-[22px] p-5 shadow-xl border'
+    'relative flex h-[460px] md:h-[340px] lg:h-[465px] flex-col justify-between rounded-[28px] p-7 md:p-5 xl:p-8.5 shadow-xl border'
 
-  
   const styles: Record<Variant, string> = {
     basic:
-      'border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02))] text-white',
-    pro: 'border-black/10 bg-white text-neutral-900 shadow-[0_20px_60px_rgba(0,0,0,.25)]',
+      'border-[var(--color-logo-dark)] bg-[var(--color-bg)] overflow-hidden',
+    pro: 'border-white bg-white text-[var(--color-bg)]',
     expert:
-      'border-white/15 [background:linear-gradient(180deg,#88d6ff,40%,#9ba5ff_70%,#b2a7ff_100%)] text-white',
+      'border-white [background:linear-gradient(-51deg,#88d6ff,40%,#5BDBFD_70%,#7375FF_100%)] text-white',
   }
 
-  const ctaVariant = variant === 'pro' ? 'accent' : 'light' 
+  const ctaVariant = variant === 'pro' ? 'dark' : 'light'
   const ctaExtra =
     variant === 'expert' ? 'bg-white/90 text-neutral-900 hover:bg-white' : ''
 
+  const isPro = variant === 'pro'
+
   return (
     <div className={cn(base, styles[variant], className)}>
-     
-      {(badge || subBadge) && (
-        <div className="absolute top-[-14px] right-5 left-5 flex items-center justify-between">
+      {blobs?.length ? (
+        <div
+          aria-hidden
+          className={cn('pointer-events-none absolute inset-0', blobsClassName)}
+        >
+          <ColorBlobs items={blobs} />
+        </div>
+      ) : null}
+      {badge && (
+        <div className="pointer-events-none absolute -top-6 left-1/2 z-10 w-max -translate-x-1/2">
           {badge && (
-            <span className="rounded-full bg-white/15 px-3 py-1 text-xs font-semibold text-white backdrop-blur">
+            <span
+              className={cn(
+                '[background:var(--gradient-secondary)]',
+                'rounded-[18px] px-[33px] py-[11px] text-[16px] font-bold text-white md:text-sm',
+                'inline-flex items-center justify-center',
+              )}
+            >
               {badge.text}
-            </span>
-          )}
-          {subBadge && (
-            <span className="ml-auto rounded-full bg-black/70 px-3 py-1 text-xs font-semibold text-white backdrop-blur">
-              {subBadge.text}
             </span>
           )}
         </div>
       )}
 
-
-      <div className="space-y-4">
-        <h3 className="text-xs uppercase opacity-75">{title}</h3>
-
-        <div className="flex items-end gap-3">
-          <div className="text-5xl leading-none font-extrabold">{price}</div>
-          {oldPrice && (
-            <div className="pb-1 text-sm line-through opacity-70">
-              {oldPrice}
-            </div>
-          )}
-        </div>
-
-        <ul className="space-y-2 text-sm">
-          {features.map((f, i) => (
-            <li key={i} className="flex items-start gap-2">
-              <span
+      <div className="flex flex-col justify-between">
+        <div className="flex flex-col">
+          <div className="flex items-center justify-between lg:mb-[10px]">
+            <h3
+              className={cn(
+                'text-[16px] font-semibold uppercase md:text-sm xl:text-[20px]',
+                isPro ? 'color-dark' : 'text-white',
+              )}
+            >
+              {title}
+            </h3>
+            {subBadge && (
+              <div
                 className={cn(
-                  'mt-[7px] inline-block h-2 w-2 rounded-full',
-                  variant === 'pro' ? 'bg-neutral-900' : 'bg-white',
-                )}
-              />
-              <span
-                className={
-                  variant === 'pro' ? 'text-neutral-800' : 'text-white/90'
-                }
-              >
-                {f.text}
-              </span>
-            </li>
-          ))}
-        </ul>
-      </div>
+                  'rounded-[30px] border border-transparent px-[32px] py-[8px] md:px-[18px] xl:px-[43px] xl:py-[11px]',
 
-   
-      <div className="mt-5">
+                  variant === 'pro' ? 'bg-dark' : 'bg-white',
+                )}
+              >
+                <span
+                  className={cn(
+                    'text-gradient text-[16px] font-bold',
+
+                    variant === 'pro'
+                      ? 'bg-dark text-gradient-secondary'
+                      : 'text-gradient bg-white',
+                  )}
+                >
+                  {subBadge.text}
+                </span>
+              </div>
+            )}
+          </div>
+          <div className="flex items-baseline justify-between">
+            <div
+              className={cn(
+                'font-alt text-[64px] font-bold md:text-3xl lg:mb-[24px] xl:text-[74px]',
+                isPro ? 'color-dark' : 'text-white',
+              )}
+            >
+              {price}
+            </div>
+
+            {oldPrice && (
+              <div
+                className={cn(
+                  'font-alt text-xl font-bold line-through md:text-sm lg:text-xl',
+                  isPro ? 'color-dark' : 'text-white',
+                )}
+              >
+                {oldPrice}
+              </div>
+            )}
+          </div>
+
+          <ul className="flex flex-col gap-x-[8px] gap-y-[14px]">
+            {features.map((f, i) => (
+              <li key={i} className="flex items-center gap-[8px]">
+                <span
+                  className={cn(
+                    'inline-block h-5 w-5 shrink-0 rounded-full',
+                    variant === 'pro' ? 'bg-dark' : 'bg-white',
+                  )}
+                />
+                <span
+                  className={
+                    variant === 'pro'
+                      ? 'color-dark lg:text-[16px] uppercase text-[16px] font-semibold md:text-xs'
+                      : 'lg:text-[16px] text-[16px] font-semibold uppercase md:text-xs'
+                  }
+                >
+                  {f.text}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div>
         <BuyCta
           source={`pricing:${title.toLowerCase()}`}
           variant={ctaVariant}

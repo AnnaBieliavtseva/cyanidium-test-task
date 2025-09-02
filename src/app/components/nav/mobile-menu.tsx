@@ -5,11 +5,14 @@ import { MenuIcon } from '../icons/Menu'
 import { CrossIcon } from '../icons/Cross'
 import { BuyCta } from '../cta/buy-cta'
 import { ColorBlobs } from '../ui/color-blobs'
+import { NAV_ITEMS } from './items'
+import { usePathname } from 'next/navigation'
+import { cn } from '@/lib/utils'
 
 export function MobileMenu() {
   const [open, setOpen] = useState(false)
   const panelRef = useRef<HTMLDivElement>(null)
-
+  const pathname = usePathname()
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false)
     document.addEventListener('keydown', onKey)
@@ -19,6 +22,8 @@ export function MobileMenu() {
   useEffect(() => {
     document.documentElement.style.overflow = open ? 'hidden' : ''
   }, [open])
+
+  const linkBase = 'rounded-md px-2 py-2 hover:bg-white/10 transition-colors'
 
   return (
     <>
@@ -43,61 +48,41 @@ export function MobileMenu() {
 
       <div
         ref={panelRef}
-        className={`fixed top-0 right-0 z-50 h-full w-full  transform-gpu bg-[var(--color-bg)] p-6 text-white shadow-xl transition-transform duration-300 ease-out md:hidden ${open ? 'translate-x-0' : 'translate-x-full'} `}
+        className={`fixed top-0 right-0 z-50 h-full w-full transform-gpu bg-[var(--color-bg)] p-6 text-white shadow-xl transition-transform duration-300 ease-out md:hidden ${open ? 'translate-x-0' : 'translate-x-full'} `}
         role="dialog"
         aria-modal="true"
         aria-label="Mobile navigation"
       >
-         <ColorBlobs
-                    items={[
-                      {
-                        preset: 'blue',
-                        size: 'sm',
-                        className: 'md:hidden top-40 -left-6',
-                      },
-                      {
-                        preset: 'violet',
-                        size: 'sm',
-                        className: 'md:hidden bottom-24 -right-8',
-                      },
-                    ]}
-                  />
+        <ColorBlobs
+          items={[
+            {
+              preset: 'blue',
+              size: 'sm',
+              className: 'md:hidden top-40 -left-6',
+            },
+            {
+              preset: 'violet',
+              size: 'sm',
+              className: 'md:hidden bottom-24 -right-8',
+            },
+          ]}
+        />
+
         <nav className="mt-10 flex flex-col gap-3 text-base">
-          <Link
-            href="/structure"
-            className="rounded-md px-2 py-2 hover:bg-white/10"
-            onClick={() => setOpen(false)}
-          >
-            Структура
-          </Link>
-          <Link
-            href="/about"
-            className="rounded-md px-2 py-2 hover:bg-white/10"
-            onClick={() => setOpen(false)}
-          >
-            Обо мне
-          </Link>
-          <Link
-            href="/benefits"
-            className="rounded-md px-2 py-2 hover:bg-white/10"
-            onClick={() => setOpen(false)}
-          >
-            Плюсы
-          </Link>
-          <Link
-            href="/reviews"
-            className="rounded-md px-2 py-2 hover:bg-white/10"
-            onClick={() => setOpen(false)}
-          >
-            Отзывы
-          </Link>
-          <Link
-            href="/faq"
-            className="rounded-md px-2 py-2 hover:bg-white/10"
-            onClick={() => setOpen(false)}
-          >
-            FAQ
-          </Link>
+          {NAV_ITEMS.map((item) => {
+            const active = pathname === item.href
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(linkBase, active && 'bg-white/15')}
+                onClick={() => setOpen(false)}
+              >
+                {item.label}
+              </Link>
+            )
+          })}
+
           <BuyCta
             source="mobile-menu"
             variant="gradient"

@@ -4,6 +4,7 @@ import * as yup from 'yup'
 import { Field, Label } from './field'
 import { Input } from './input'
 import { Button } from './button'
+import { toast } from 'sonner'
 
 const schema = yup.object({
   name: yup
@@ -45,14 +46,21 @@ export function PurchaseForm({ onDone }: { onDone?: () => void }) {
       setValues((s) => ({ ...s, [field]: v }))
     }
 
-  const validateField = async (field: keyof Values) => {
+  const validateField = async (_field: keyof Values) => {
     try {
-      await schema.validateAt(field, values)
-      setErrors((e) => ({ ...e, [field]: undefined }))
+      await schema.validate(values, { abortEarly: false })
+      setErrors({})
+      await new Promise((r) => setTimeout(r, 900))
+
+      toast.success('Спасибо! Мы скоро с вами свяжемся.')
+      onDone?.()
     } catch (err) {
       if (err instanceof yup.ValidationError) {
-        setErrors((e) => ({ ...e, [field]: err.message }))
+      } else {
+        toast.error('Не удалось отправить форму. Попробуйте позже.')
       }
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -62,8 +70,8 @@ export function PurchaseForm({ onDone }: { onDone?: () => void }) {
     try {
       await schema.validate(values, { abortEarly: false })
       setErrors({})
-      // имитация запроса
       await new Promise((r) => setTimeout(r, 900))
+      toast.success('Спасибо! Мы скоро с вами свяжемся.')
       onDone?.()
     } catch (err) {
       if (err instanceof yup.ValidationError) {
@@ -83,10 +91,10 @@ export function PurchaseForm({ onDone }: { onDone?: () => void }) {
   return (
     <form
       onSubmit={onSubmit}
-      className="mx-auto flex h-full w-full max-w-[410px] flex-col justify-between px-6 pt-[157px] md:pt-[90px] pb-8 md:pb-[73px] md:rounded-[28px] md:border-5 md:border-[var(--color-logo-dark)] "
+      className="mx-auto flex h-full w-full max-w-[410px] flex-col justify-between px-6 pt-[157px] pb-8 md:rounded-[28px] md:border-5 md:border-[var(--color-logo-dark)] md:pt-[90px] md:pb-[73px]"
     >
       <div>
-        <h3 className="mb-6 md:mb-9 text-center text-2xl font-extrabold tracking-tight uppercase">
+        <h3 className="mb-6 text-center text-2xl font-extrabold tracking-tight uppercase md:mb-9">
           УКАЖИТЕ СВОИ ДАННЫЕ
         </h3>
 
@@ -144,7 +152,7 @@ export function PurchaseForm({ onDone }: { onDone?: () => void }) {
       </div>
 
       <div className="mt-8">
-        <Button type="submit" variant="light" size="lg" full loading={loading}>
+        <Button type="submit" variant="modal" size="lg" full loading={loading}>
           Отправить
         </Button>
       </div>

@@ -1,12 +1,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import { ArrowIcon } from '../icons/Arrow'
-
-const LANGS = [
-  { code: 'ru', label: 'RU' },
-  { code: 'uk', label: 'UA' },
-  { code: 'en', label: 'EN' },
-] as const
+import { LANGS } from './items'
 
 export function LanguageSwitcher({
   onChange,

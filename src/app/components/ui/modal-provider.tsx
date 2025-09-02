@@ -33,10 +33,7 @@ export function ModalProvider({ children }: { children: React.ReactNode }) {
       {children}
 
       <Modal open={state.kind === 'purchase'} onClose={close}>
-        <PurchaseForm
-          onDone={close}
-          //   defaultValues={state.payload}
-        />
+        <PurchaseForm onDone={close} />
       </Modal>
     </ModalCtx.Provider>
   )

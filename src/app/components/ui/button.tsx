@@ -6,9 +6,9 @@ import * as React from 'react'
 
 type Variants =
   | 'primary'
-  | 'accent'
+  | 'dark'
   | 'light'
-  | 'ghost'
+  | 'modal'
   | 'gradientSecondary'
   | 'gradient'
 type Sizes = 'sm' | 'md' | 'lg' | 'xl'
@@ -52,7 +52,7 @@ export function Button(props: ButtonProps) {
   }
 
   const base =
-    'relative inline-flex items-center justify-center cursor-pointer gap-2 rounded-[999px] font-semibold transition-colors ' +
+    'relative inline-flex items-center justify-center cursor-pointer gap-2 rounded-[40px] font-semibold transition-colors ' +
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ' +
     'focus-visible:ring-[var(--color-brand-500)] disabled:opacity-50 disabled:cursor-not-allowed'
 
@@ -65,10 +65,10 @@ export function Button(props: ButtonProps) {
 
   const variants: Record<Variants, string> = {
     primary: 'bg-[var(--color-brand-500)] text-white hover:brightness-110',
-    accent: 'bg-[var(--color-accent-500)] text-white hover:brightness-110',
-    light:
-      'bg-[var(--color-fg)] text-[var(--color-bg)] hover:bg-white/90 shadow-[0_1px_0_rgba(255,255,255,.3),0_-1px_0_rgba(0,0,0,.15)_inset]',
-    ghost: 'bg-transparent text-white hover:bg-white/10',
+    dark: 'bg-[var(--color-bg)] text-white hover:brightness-110',
+    light: 'bg-[var(--color-fg)] text-[var(--color-bg)] hover:bg-white/90',
+    modal:
+      'bg-[var(--color-fg)] text-[var(--color-bg)] rounded-[10px] border-4 border-[var(--gradient-primary)] hover:bg-white/90',
     gradientSecondary:
       '[background:var(--gradient-secondary)] text-white hover:brightness-110',
     gradient:
