@@ -1,7 +1,8 @@
-import { Raleway, Manrope, Sansation } from 'next/font/google'
+import { Raleway, Manrope } from 'next/font/google'
+import localFont from 'next/font/local'
 
 export const raleway = Raleway({
-  subsets: ['latin', 'cyrillic'],
+  subsets: ['latin'],
   weight: ['400', '600', '700', '800'],
   display: 'swap',
   variable: '--font-sans',
@@ -14,9 +15,19 @@ export const manrope = Manrope({
   variable: '--font-alt', 
 })
 
-export const logo = Sansation({
-  subsets: ['latin', 'cyrillic'],
-  weight: ['700'], 
-  variable: '--font-logo',
+export const logo = localFont({
+  src: [
+    {
+      path: './fonts/sansation/Sansation-Regular.ttf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: './fonts/sansation/Sansation-Bold.ttf',
+      weight: '700',
+      style: 'normal',
+    },
+  ],
   display: 'swap',
+  variable: '--font-logo',
 })
