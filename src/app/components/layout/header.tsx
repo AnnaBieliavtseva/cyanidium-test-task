@@ -6,23 +6,20 @@ import { BuyCtaHeader } from '../cta/buy-cta-header'
 import { cn } from '@/lib/utils'
 import { NAV_ITEMS } from '../nav/items'
 
-const baseLinkClass = 'rounded-[var(--radius-xl)] px-2 py-1 hover:bg-white/10'
+const baseLinkClass = 'hover:underline'
 
 export function Header() {
   return (
     <header className="z-70 mt-12.5 pt-[env(safe-area-inset-top)] md:mt-10">
-      <Container className="flex w-full items-center justify-between text-sm">
+      <Container className="flex w-full items-center justify-between">
         <Link href="/" aria-label="Go to home page">
-          <p className="font-logo text-base leading-none font-bold uppercase lg:text-lg">
-            Aleko{' '}
-            <span className="md:text-gradient text-[var(--color-logo-dark)]">
-              Sokurashvili
-            </span>
+          <p className="font-logo py-[9px] text-base leading-none font-bold uppercase lg:py-[10px] lg:text-lg">
+            Aleko <span className="gradient-logo">Sokurashvili</span>
           </p>
         </Link>
 
         <div className="flex items-center justify-between gap-3">
-          <nav className="hidden gap-4 text-xs md:flex md:gap-1.5 lg:mr-15.25 lg:gap-3 lg:text-base">
+          <nav className="hidden gap-4 text-xs leading-none font-medium md:flex md:gap-1.5 xl:mr-[60px] lg:gap-7 lg:py-[10px] md:text-base">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}

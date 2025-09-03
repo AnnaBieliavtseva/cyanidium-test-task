@@ -1,9 +1,9 @@
 @import 'tailwindcss';
 
 @theme {
-  --font-sans: var(--font-sans), ui-sans-serif, system-ui;
-  --font-logo: var(--font-logo), var(--font-sans);
-  --font-alt: var(--font-alt), var(--font-sans);
+  --font-sans: var(--font-sans-next), ui-sans-serif, system-ui;
+  --font-alt: var(--font-alt-next), var(--font-sans);
+  --font-logo: var(--font-logo-next), var(--font-sans);
 
   --radius-xl: 1rem;
   --radius-2xl: 1.25rem;
@@ -17,7 +17,7 @@
   --color-fg: #ffffff;
   --color-muted-500: #c5c5c5;
 
-  --color-accent-blue: rgba(19, 184, 255, 0.9);
+  --color-accent-blue: rgba(19, 184, 255, 1);
   --color-accent-violet: rgba(167, 93, 243, 0.9);
 
   --gradient-secondary: linear-gradient(
@@ -34,6 +34,43 @@
     #9c9eff 40%,
     #e3a1ff 80%,
     #e56f8c 100%
+  );
+}
+.gradient-logo {
+  background: linear-gradient(
+    89.75deg,
+    #5bdbfd 0.26%,
+    #7375ff 51.07%,
+    #df93ff 100.96%,
+    #e56f8c 126.34%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-hero {
+  background: linear-gradient(
+    90.63deg,
+    #90e8ff 0.44%,
+    #9c9eff 69.99%,
+    #e3a1ff 138.27%,
+    #e56f8c 173.01%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-pricing-badge {
+  background: linear-gradient(
+    126.34deg,
+    #5bdbfd 16.95%,
+    #7375ff 79.54%,
+    #df93ff 140.99%,
+    #e56f8c 172.25%
   );
 }
 

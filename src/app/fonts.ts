@@ -2,17 +2,17 @@ import { Raleway, Manrope } from 'next/font/google'
 import localFont from 'next/font/local'
 
 export const raleway = Raleway({
-  subsets: ['latin'],
+  subsets: ['latin','cyrillic',],
   weight: ['400', '600', '700', '800'],
   display: 'swap',
-  variable: '--font-sans',
+  variable: '--font-sans-next',
 })
 
 export const manrope = Manrope({
   subsets: ['latin', 'cyrillic'],
-  weight: ['700'], 
+  weight: ['700'],
   display: 'swap',
-  variable: '--font-alt', 
+  variable: '--font-alt-next',
 })
 
 export const logo = localFont({
@@ -29,5 +29,5 @@ export const logo = localFont({
     },
   ],
   display: 'swap',
-  variable: '--font-logo',
+  variable: '--font-logo-next',
 })

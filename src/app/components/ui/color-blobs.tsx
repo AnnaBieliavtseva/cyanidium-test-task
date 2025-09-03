@@ -8,54 +8,54 @@ type Size = 'sm' | 'lg'
 type BlobItem = {
   preset: Preset
   size?: Size
-  className?: string
-  opacity?: number
+  className?: string // сюда кидаешь top/left/right/bottom и т.п.
+  opacity?: number // по умолчанию 1
 }
 
-const COLOR: Record<Preset, { from: string; to: string }> = {
-  blue: { from: 'rgba(19,184,255,0.9)', to: 'rgba(19,184,255,0.6)' },
-  violet: { from: 'rgba(167,93,243,0.9)', to: 'rgba(167,93,243,0.6)' },
+const COLOR: Record<Preset, string> = {
+  blue: 'rgba(19,184,255,1)',
+  violet: 'rgba(167,93,243,1)',
 }
 
 const SIZE: Record<Size, string> = {
-  sm: 'h-[174px] w-[184px] blur-[80px]',
-  lg: 'h-[346px] w-[368px] blur-[120px]',
+  sm: 'h-[174px] w-[184px] blur-[289px]',
+  lg: 'h-[346px] w-[368px] blur-[579px]',
 }
 
 export function ColorBlobs({
   items,
   className,
+  zIndex = 0,
 }: {
   items: BlobItem[]
   className?: string
+  zIndex?: number
 }) {
   return (
     <div
       aria-hidden
       className={cn(
-        'pointer-events-none absolute inset-0 z-10 overflow-hidden',
+        'pointer-events-none absolute inset-0',
         className,
       )}
+      style={{ zIndex }}
     >
-      {items.map((b, i) => {
-        const c = COLOR[b.preset]
-        const s = SIZE[b.size ?? 'sm']
-        return (
-          <div
-            key={i}
-            className={cn(
-              'absolute rounded-full',
-              'opacity-80',
-              s,
-              b.className,
-            )}
-            style={{
-              opacity: b.opacity ?? 0.8,
-              background: `radial-gradient(closest-side, ${c.from}, ${c.to} 80%, transparent 70%)`,
-            }}
-          />
-        )
-      })}
+      {items.map((b, i) => (
+        <div
+          key={i}
+          className={cn(
+            'absolute rounded-full',
+            SIZE[b.size ?? 'sm'],
+            b.className,
+          )}
+          style={{
+            backgroundColor: COLOR[b.preset],
+            opacity: b.opacity ?? 1,
+            willChange: 'filter, transform',
+            transform: 'translateZ(0)',
+          }}
+        />
+      ))}
     </div>
   )
 }

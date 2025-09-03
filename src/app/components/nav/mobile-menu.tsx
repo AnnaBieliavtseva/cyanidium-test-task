@@ -30,12 +30,12 @@ export function MobileMenu() {
       <button
         aria-label={open ? 'Close menu' : 'Open menu'}
         onClick={() => setOpen((v) => !v)}
-        className="relative z-[60] inline-flex h-8 w-8 items-center justify-center text-white hover:bg-white/10 md:hidden"
+        className="relative z-[60] inline-flex items-center justify-center text-white hover:bg-white/10 md:hidden"
       >
         {open ? (
           <CrossIcon className="h-5 w-5" />
         ) : (
-          <MenuIcon className="h-9 w-9" />
+          <MenuIcon className="h-[35px] w-[35px]" />
         )}
       </button>
       {open && (

@@ -34,16 +34,19 @@ export function LanguageSwitcher({
   }, [])
 
   return (
-    <div ref={ref} className={`relative ${className}`}>
+    <div
+      ref={ref}
+      className={`md:w-12 h-5 w-11 flex-col items-start md:h-5 relative flex ${className} `}
+    >
       <button
         type="button"
         aria-haspopup="listbox"
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex cursor-pointer items-center py-1 gap-1 rounded-[var(--radius-xl)] h-5 md:h-7 w-11 md:w-12 text-xs lg:text-base text-white hover:bg-white/10"
+        className="inline-flex cursor-pointer items-center gap-[3px] text-sm leading-5 text-white lg:text-base"
       >
         <p>{LANGS.find((l) => l.code === code)?.label}</p>
-        <ArrowIcon />
+        <ArrowIcon className="h-[15px] w-[15px] lg:h-4 lg:w-4" />
       </button>
 
       {open && (

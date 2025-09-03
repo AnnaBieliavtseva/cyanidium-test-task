@@ -60,13 +60,14 @@ export function Button(props: ButtonProps) {
     sm: 'h-9 px-4 text-xs',
     md: 'h-10 px-4 text-sm',
     lg: 'h-12.5 px-6 text-sm font-semibold',
-    xl: 'h-15 px-7 text-base',
+    xl: 'h-[60px] md:h-[74px] w-[313px] font-semibold text-base',
   }
 
   const variants: Record<Variants, string> = {
     primary: 'bg-[var(--color-brand-500)] text-white hover:brightness-110',
     dark: 'bg-[var(--color-bg)] text-white hover:brightness-110',
-    light: 'bg-[var(--color-fg)] text-[var(--color-bg)] hover:bg-white/90',
+    light:
+      'bg-[var(--color-fg)] text-[var(--color-bg)] hover:bg-white/90  box-shadow: 4px 6px 10px 4px rgba(167, 93, 243, 0.2);',
     modal:
       'bg-[var(--color-fg)] text-[var(--color-bg)] rounded-[10px] border-4 border-[var(--gradient-primary)] hover:bg-white/90',
     gradientSecondary:
@@ -85,7 +86,7 @@ export function Button(props: ButtonProps) {
   )
 
   const Badge = rightBadge ? (
-    <span className="pointer-events-none absolute top-1/2 right-0 inline-grid w-15 -translate-y-1/2 place-items-center rounded-full bg-[var(--color-accent-500)] h-full  font-semibold text-xl leading-none text-white shadow-[0_4px_14px_rgba(0,0,0,.25)] ">
+    <span className="pointer-events-none absolute top-1/2 right-0 inline-grid h-full w-15 md:w-18.5 md:h-18.5 -translate-y-1/2 place-items-center rounded-[30px] md:rounded-[38px] bg-[var(--color-accent-500)]  text-xl leading-none font-semibold text-white shadow-[0_4px_14px_rgba(0,0,0,.25)]">
       {rightBadge}
     </span>
   ) : null

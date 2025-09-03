@@ -35,19 +35,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ru" suppressHydrationWarning>
-      <body
-        className={cn(
-          raleway.variable,
-          manrope.variable,
-          logo.variable,
-          'flex min-h-dvh flex-col font-sans',
-        )}
-      >
+    <html
+      lang="ru"
+      suppressHydrationWarning
+      className={cn(raleway.variable, manrope.variable, logo.variable)}
+    >
+      <body className='flex min-h-dvh flex-col font-sans'>
         <Providers>
           <Header />
-          <Suspense fallback={<Loading />}></Suspense>
-          {children}
+          <Suspense fallback={<Loading />}>{children}</Suspense>
         </Providers>
       </body>
     </html>

@@ -66,7 +66,7 @@ export function PricingCard({
           {badge && (
             <span
               className={cn(
-                '[background:var(--gradient-secondary)]',
+                'gradient-pricing-badge',
                 'rounded-[18px] px-[33px] py-[11px] text-[16px] font-bold text-white md:text-sm',
                 'inline-flex items-center justify-center',
               )}
