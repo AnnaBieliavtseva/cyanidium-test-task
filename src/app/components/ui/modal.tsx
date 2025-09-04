@@ -20,7 +20,6 @@ export function Modal({
   className,
   children,
 }: ModalProps) {
- 
   const [mounted, setMounted] = React.useState(false)
 
   React.useEffect(() => setMounted(true), [])
@@ -59,7 +58,7 @@ export function Modal({
         <div
           className={cn(
             'relative z-[71] mx-auto h-full w-full md:mt-20 md:max-w-[410px]',
-            'overflow-hidden rounded-[28px]',
+            'overflow-auto overscroll-contain rounded-[28px] [-webkit-overflow-scrolling:touch]',
             '[background:var(--color-bg)]',
             'p-0',
             className,
@@ -92,9 +91,7 @@ export function Modal({
               {title}
             </h2>
           )}
-          <div className="max-h-[inherit] overscroll-contain relative z-10 h-full overflow-y-auto md:h-[491px]">
-            {children}
-          </div>
+          <div className="relative z-10 h-full md:h-[491px]">{children}</div>
         </div>
       </div>
     ) : null,
