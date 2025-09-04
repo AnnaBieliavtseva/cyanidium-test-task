@@ -48,7 +48,7 @@ export function Hero() {
                   />
                 </picture>
 
-                <div className="space-y-[19.3px] text-center absolute inset-x-0 bottom-[-5px] md:hidden">
+                <div className="absolute inset-x-0 bottom-[-5px] space-y-[19.3px] text-center md:hidden">
                   <p className="gradient-hero mb-1 space-y-[16.3px] text-center text-[21px] leading-none font-bold">
                     От 0 до 100,000 за 90 дней
                   </p>
@@ -58,7 +58,7 @@ export function Hero() {
                 </div>
               </div>
 
-              <div className="absolute hidden left-[410px] top-[200px] lg:top-[213px] xl:left-[570px] md:block">
+              <div className="absolute top-[200px] left-[410px] hidden md:block lg:top-[213px] xl:left-[570px]">
                 <p className="gradient-hero mb-[15px] space-y-[24.92px] text-2xl font-bold xl:text-[32px]">
                   От 0 до 100,000 за 90 дней
                 </p>
@@ -104,9 +104,9 @@ export function Hero() {
         </div>
 
         <div className="md:hidden">
-          <p className="mb-8  mt-4 space-y-[19.57px] text-center text-[50px] leading-none font-extrabold">
-            <div>ВИРУСНЫХ</div>
-            <div>ВИДЕО</div>
+          <p className="mt-4 mb-8 space-y-[19.57px] text-center text-[50px] leading-none font-extrabold">
+            <span className="block">ВИРУСНЫХ</span>
+            <span className="block">ВИДЕО</span>
           </p>
           <p className="mb-11 text-center text-sm leading-none">
             Станьте известным всего за 3&nbsp;месяца без затрат на рекламу!

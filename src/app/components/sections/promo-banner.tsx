@@ -10,19 +10,19 @@ export function PromoBanner() {
     <section>
       <Container bleed>
         <div className="relative overflow-hidden border border-transparent bg-[var(--color-bg)] px-[56px] py-[113px] [background:linear-gradient(var(--color-bg),var(--color-bg))_padding-box,var(--gradient-secondary)_border-box] md:min-h-[488px]">
-          <div className="absolute inset-y-0 left-0 z-10 hidden w-[513px] md:block">
+          <div className="absolute inset-y-0 left-0 z-10 hidden w-[28%] md:block">
             <Image
               src="/promo-banner.webp"
               alt=""
               fill
               priority
-              sizes="(min-width:1024px) 38vw, 40vw"
+              sizes="(min-width:1024px) 100vw, 100vw"
               className="object-cover"
             />
           </div>
 
           <div
-            className="absolute inset-y-0 right-0 z-10 hidden w-[62%] md:block"
+            className="absolute inset-y-0 right-0 z-10 hidden w-[72%] md:block"
             style={{
               background:
                 'linear-gradient(115deg, #2a1b3f 0%, #DF93FF 25%, #7375FF 65%, #60C7FD 100%)',

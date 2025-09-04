@@ -92,7 +92,9 @@ export function Modal({
               {title}
             </h2>
           )}
-          <div className="relative z-10 h-max md:h-[491px]">{children}</div>
+          <div className="max-h-[inherit] overscroll-contain relative z-10 h-full overflow-y-auto md:h-[491px]">
+            {children}
+          </div>
         </div>
       </div>
     ) : null,

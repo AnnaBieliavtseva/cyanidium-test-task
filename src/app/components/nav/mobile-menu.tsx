@@ -85,7 +85,7 @@ export function MobileMenu() {
 
           <BuyCta
             source="mobile-menu"
-            variant="gradient"
+            variant="gradientHeader"
             full
             className="mt-4 max-w-[220px] md:hidden"
           />

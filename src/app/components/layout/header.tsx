@@ -19,7 +19,7 @@ export function Header() {
         </Link>
 
         <div className="flex items-center justify-between gap-3">
-          <nav className="hidden gap-4 text-xs leading-none font-medium md:flex md:gap-1.5 xl:mr-[60px] lg:gap-7 lg:py-[10px] md:text-base">
+          <nav className="hidden gap-4 text-xs leading-none font-medium md:flex md:gap-1.5 md:text-base lg:gap-7 lg:py-[10px] xl:mr-[60px]">
             {NAV_ITEMS.map((item) => (
               <Link
                 key={item.href}

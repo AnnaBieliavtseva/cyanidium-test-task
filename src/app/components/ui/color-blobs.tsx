@@ -38,7 +38,7 @@ export function ColorBlobs({
     <div
       aria-hidden
       className={cn(
-        'pointer-events-none absolute inset-0 overflow-visible',
+        'pointer-events-none absolute inset-0 overflow-x-clip ',
         className,
       )}
       style={{ zIndex }}

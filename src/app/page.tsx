@@ -1,6 +1,6 @@
-import { Hero } from "./components/sections/hero";
-import { PricingSection } from "./components/sections/pricing";
-import { PromoBanner } from "./components/sections/promo-banner";
+import { Hero } from './components/sections/hero'
+import { PricingSection } from './components/sections/pricing'
+import { PromoBanner } from './components/sections/promo-banner'
 
 export default function Home() {
   return (
