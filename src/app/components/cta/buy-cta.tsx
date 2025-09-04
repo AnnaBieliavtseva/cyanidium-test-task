@@ -16,7 +16,7 @@ type Props = {
 export function BuyCta({
   source = 'unknown',
   className,
-  variant = 'gradient',
+  variant = 'gradientHeader',
   size = 'md',
   full,
   children = 'Купить со скидкой',

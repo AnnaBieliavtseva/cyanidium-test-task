@@ -8,8 +8,8 @@ type Size = 'sm' | 'lg'
 type BlobItem = {
   preset: Preset
   size?: Size
-  className?: string // сюда кидаешь top/left/right/bottom и т.п.
-  opacity?: number // по умолчанию 1
+  className?: string 
+  opacity?: number 
 }
 
 const COLOR: Record<Preset, string> = {
@@ -35,7 +35,7 @@ export function ColorBlobs({
     <div
       aria-hidden
       className={cn(
-        'pointer-events-none absolute inset-0',
+        'pointer-events-none absolute inset-0 overflow-visible',
         className,
       )}
       style={{ zIndex }}

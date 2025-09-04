@@ -12,39 +12,48 @@ export function PricingSection() {
           {
             preset: 'violet',
             size: 'lg',
-            className: 'hidden md:block -top-50 -right-3',
+            className: 'hidden md:block top-[112px] right-[24px]',
           },
           {
             preset: 'blue',
             size: 'sm',
-            className: 'md:hidden -top-25 -right-3',
+            className: 'md:hidden top-[135px] -right-[92px]',
           },
         ]}
       />
 
       <Container className="px-10 xl:px-20">
-        <h2 className="text-bold mb-7 text-center text-2xl uppercase md:mb-20 md:text-5xl">
+        <h2 className="text-bold mb-7 text-center text-2xl leading-none uppercase md:mb-20 md:text-5xl">
           ТАРИФЫ
         </h2>
 
-        <div className="grid gap-8 md:grid-cols-3 md:gap-2 lg:gap-5">
+        <div className="grid gap-[26px] md:grid-cols-3 md:gap-2 lg:gap-5">
           <PricingCard
             variant="basic"
             title="Базовый"
             price="99 $"
             oldPrice="139$"
             features={[{ text: 'Базовый курс' }, { text: '38 уроков' }]}
-            // className="h-full"
             blobs={[
               {
                 preset: 'violet',
                 size: 'sm',
-                className: ' -top-5 -right-5',
+                className: '-top-[67px] md:hidden -right-[165px]',
               },
               {
                 preset: 'blue',
                 size: 'sm',
-                className: '-bottom-5 -left-5',
+                className: '-bottom-[108px]  md:hidden -left-[86px]',
+              },
+              {
+                preset: 'violet',
+                size: 'sm',
+                className: '-top-[67px] hidden md:block -right-[105px]',
+              },
+              {
+                preset: 'blue',
+                size: 'sm',
+                className: '-bottom-[78px] hidden md:block -left-[86px]',
               },
             ]}
           />
@@ -54,6 +63,7 @@ export function PricingSection() {
             title="Продвинутый"
             price="149 $"
             oldPrice="199$"
+            className='mt-[21px] md:mt-0'
             badge={{ text: 'BEST SELLER' }}
             subBadge={{ text: 'PRO' }}
             features={[
@@ -62,7 +72,6 @@ export function PricingSection() {
               { text: '48 уроков' },
               { text: 'Чат-комьюнити для создателей контента' },
             ]}
-            // className="h-full"
           />
 
           <PricingCard
@@ -71,7 +80,6 @@ export function PricingSection() {
             price="299 $"
             oldPrice="509$"
             subBadge={{ text: 'EXPERT' }}
-            // className="h-full"
             features={[
               { text: 'Дополнительные уроки' },
               { text: '48 уроков' },

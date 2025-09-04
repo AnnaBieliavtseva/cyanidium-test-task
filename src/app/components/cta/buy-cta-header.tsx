@@ -4,8 +4,9 @@ import { BuyCta } from './buy-cta'
 export function BuyCtaHeader() {
   return (
     <BuyCta
+      size='lg'
       source="header"
-      className="hidden md:inline-flex md:px-3 lg:px-5" 
+      className="hidden md:inline-flex" 
     />
   )
 }

@@ -58,7 +58,7 @@ export function Hero() {
                 </div>
               </div>
 
-              <div className="absolute hidden left-[410px] top-[200px] lg:top-[210px] xl:left-[570px] md:block">
+              <div className="absolute hidden left-[410px] top-[200px] lg:top-[213px] xl:left-[570px] md:block">
                 <p className="gradient-hero mb-[15px] space-y-[24.92px] text-2xl font-bold xl:text-[32px]">
                   От 0 до 100,000 за 90 дней
                 </p>

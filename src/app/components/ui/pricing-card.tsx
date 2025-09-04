@@ -35,39 +35,39 @@ export function PricingCard({
   blobsClassName?: string
 }) {
   const base =
-    'relative flex h-[460px] md:h-[340px] lg:h-[465px] flex-col justify-between rounded-[28px] p-7 md:p-5 xl:p-8.5 shadow-xl border'
+    'relative flex min-h-[430px] xl:w-[360px] lg:h-[465px] flex-col  justify-between rounded-[28px] p-8 lg:px-[36px] shadow-[inset_4px_6px_10px_4px_rgba(167,93,243,0.2)]'
 
   const styles: Record<Variant, string> = {
-    basic:
-      'border-[var(--color-logo-dark)] bg-[var(--color-bg)] overflow-hidden',
-    pro: 'border-white bg-white text-[var(--color-bg)]',
+    basic: 'bg-[var(--color-bg)] overflow-hidden',
+
+    pro: 'bg-white text-[var(--color-bg)] px-[28px] min-h-[467px] md:min-h-[466px]',
     expert:
-      'border-white [background:linear-gradient(-51deg,#88d6ff,40%,#5BDBFD_70%,#7375FF_100%)] text-white',
+      'border-white gradient-pricing-badge px-[24px] xl:py-[27px] text-white min-h-[466px]',
   }
 
-  const ctaVariant = variant === 'pro' ? 'dark' : 'light'
-  const ctaExtra =
-    variant === 'expert' ? 'bg-white/90 text-neutral-900 hover:bg-white' : ''
-
+  const isBasic = variant === 'basic'
   const isPro = variant === 'pro'
-
+  const ctaVariant = isBasic ? 'light' : 'dark'
   return (
     <div className={cn(base, styles[variant], className)}>
       {blobs?.length ? (
         <div
           aria-hidden
-          className={cn('pointer-events-none absolute inset-0', blobsClassName)}
+          className={cn(
+            'pointer-events-none absolute inset-0',
+            blobsClassName,
+          )}
         >
           <ColorBlobs items={blobs} />
         </div>
       ) : null}
       {badge && (
-        <div className="pointer-events-none absolute -top-6 left-1/2 z-10 w-max -translate-x-1/2">
+        <div className="pointer-events-none absolute -top-[21px] left-1/2 z-10 w-max -translate-x-1/2">
           {badge && (
             <span
               className={cn(
                 'gradient-pricing-badge',
-                'rounded-[18px] px-[33px] py-[11px] text-[16px] font-bold text-white md:text-sm',
+                'h-[42px] rounded-[18px] px-[33.5px] text-[16px] leading-none font-bold text-white md:text-base',
                 'inline-flex items-center justify-center',
               )}
             >
@@ -79,10 +79,15 @@ export function PricingCard({
 
       <div className="flex flex-col justify-between">
         <div className="flex flex-col">
-          <div className="flex items-center justify-between lg:mb-[10px]">
+          <div
+            className={cn(
+              'flex items-center justify-between lg:mb-[18px]',
+              isBasic ? 'mb-8' : 'mb-[18px]',
+            )}
+          >
             <h3
               className={cn(
-                'text-[16px] font-semibold uppercase md:text-sm xl:text-[20px]',
+                'text-[16px] leading-none font-semibold uppercase md:text-sm xl:text-[20px]',
                 isPro ? 'color-dark' : 'text-white',
               )}
             >
@@ -91,18 +96,16 @@ export function PricingCard({
             {subBadge && (
               <div
                 className={cn(
-                  'rounded-[30px] border border-transparent px-[32px] py-[8px] md:px-[18px] xl:px-[43px] xl:py-[11px]',
+                  'rounded-[30px] border border-transparent md:h-[42px] px-[33px] py-[8px] md:px-[18px] xl:px-[43px]',
 
-                  variant === 'pro' ? 'bg-dark' : 'bg-white',
+                  isPro ? 'bg-dark' : 'bg-white px-[29px] xl:px-[29px]',
                 )}
               >
                 <span
                   className={cn(
-                    'text-gradient text-[16px] font-bold',
+                    'gradient-pricing-badge-text text-[16px] leading-none font-bold',
 
-                    variant === 'pro'
-                      ? 'bg-dark text-gradient-secondary'
-                      : 'text-gradient bg-white',
+                    isPro ? 'bg-dark' : 'bg-white',
                   )}
                 >
                   {subBadge.text}
@@ -110,10 +113,10 @@ export function PricingCard({
               </div>
             )}
           </div>
-          <div className="flex items-baseline justify-between">
+          <div className="mb-7 flex items-baseline justify-between">
             <div
               className={cn(
-                'font-alt text-[64px] font-bold md:text-3xl lg:mb-[24px] xl:text-[74px]',
+                'font-alt text-[64px] leading-none font-bold md:text-3xl lg:mb-[24px] xl:text-[74px]',
                 isPro ? 'color-dark' : 'text-white',
               )}
             >
@@ -123,7 +126,7 @@ export function PricingCard({
             {oldPrice && (
               <div
                 className={cn(
-                  'font-alt text-xl font-bold line-through md:text-sm lg:text-xl',
+                  'font-alt text-xl leading-none font-bold line-through md:text-sm lg:text-xl',
                   isPro ? 'color-dark' : 'text-white',
                 )}
               >
@@ -132,20 +135,20 @@ export function PricingCard({
             )}
           </div>
 
-          <ul className="flex flex-col gap-x-[8px] gap-y-[14px]">
+          <ul className="flex flex-col gap-y-[14px]">
             {features.map((f, i) => (
               <li key={i} className="flex items-center gap-[8px]">
                 <span
                   className={cn(
                     'inline-block h-5 w-5 shrink-0 rounded-full',
-                    variant === 'pro' ? 'bg-dark' : 'bg-white',
+                    isPro ? 'bg-dark' : 'bg-white',
                   )}
                 />
                 <span
                   className={
-                    variant === 'pro'
-                      ? 'color-dark lg:text-[16px] uppercase text-[16px] font-semibold md:text-xs'
-                      : 'lg:text-[16px] text-[16px] font-semibold uppercase md:text-xs'
+                    isPro
+                      ? 'color-dark text-[16px] font-semibold uppercase md:text-xs lg:text-[16px]'
+                      : 'text-[16px] font-semibold uppercase md:text-xs lg:text-[16px]'
                   }
                 >
                   {f.text}
@@ -159,9 +162,9 @@ export function PricingCard({
         <BuyCta
           source={`pricing:${title.toLowerCase()}`}
           variant={ctaVariant}
-          size="lg"
+          className='z-10'
+          size="md"
           full
-          className={ctaExtra}
         >
           {ctaText}
         </BuyCta>

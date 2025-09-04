@@ -21,13 +21,14 @@
   --color-accent-violet: rgba(167, 93, 243, 0.9);
 
   --gradient-secondary: linear-gradient(
-    -71deg,
-    #5bdbfd 0%,
-    #7375ff 40%,
-    #df93ff 80%,
-    #e56f8c 100%
+    89.75deg,
+    #5bdbfd 0.26%,
+    #7375ff 51.07%,
+    #df93ff 100.96%,
+    #e56f8c 126.34%
   );
 
+ 
   --gradient-primary: linear-gradient(
     90deg,
     #90e8ff 0%,
@@ -73,6 +74,21 @@
     #e56f8c 172.25%
   );
 }
+
+.gradient-pricing-badge-text {
+  background: linear-gradient(
+    126.34deg,
+    #5bdbfd 16.95%,
+    #7375ff 79.54%,
+    #df93ff 140.99%,
+    #e56f8c 172.25%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
 
 .font-logo {
   font-family: var(--font-logo);
