@@ -35,10 +35,10 @@ export function PricingCard({
   blobsClassName?: string
 }) {
   const base =
-    'relative flex min-h-[430px] xl:w-[360px] lg:h-[465px] flex-col  justify-between rounded-[28px] p-8 lg:px-[36px] shadow-[inset_4px_6px_10px_4px_rgba(167,93,243,0.2)]'
+    'relative flex min-h-[430px] xl:w-[360px] lg:h-[465px] flex-col  justify-between rounded-[28px] p-8 md:p-6 lg:px-[36px] shadow-[inset_4px_6px_10px_4px_rgba(167,93,243,0.2)]'
 
   const styles: Record<Variant, string> = {
-    basic: 'bg-[var(--color-bg)] overflow-hidden',
+    basic: 'bg-[var(--color-bg)] md:[px-36px] md:pt-[36px] md:pb-[26px] overflow-hidden',
 
     pro: 'bg-white text-[var(--color-bg)] px-[28px] min-h-[467px] md:min-h-[466px]',
     expert:
@@ -47,22 +47,20 @@ export function PricingCard({
 
   const isBasic = variant === 'basic'
   const isPro = variant === 'pro'
+  const isExpert = variant ==='expert'
   const ctaVariant = isBasic ? 'light' : 'dark'
   return (
     <div className={cn(base, styles[variant], className)}>
       {blobs?.length ? (
         <div
           aria-hidden
-          className={cn(
-            'pointer-events-none absolute inset-0',
-            blobsClassName,
-          )}
+          className={cn('pointer-events-none absolute inset-0', blobsClassName)}
         >
           <ColorBlobs items={blobs} />
         </div>
       ) : null}
       {badge && (
-        <div className="pointer-events-none absolute -top-[21px] left-1/2 z-10 w-max -translate-x-1/2">
+        <div className="pointer-events-none absolute -top-[21px] lg:-top-[30px] left-1/2 z-10 w-max -translate-x-1/2">
           {badge && (
             <span
               className={cn(
@@ -96,7 +94,7 @@ export function PricingCard({
             {subBadge && (
               <div
                 className={cn(
-                  'rounded-[30px] border border-transparent md:h-[42px] px-[33px] py-[8px] md:px-[18px] xl:px-[43px]',
+                  'rounded-[30px] border border-transparent px-[33px] py-[8px] md:h-[42px] md:px-[18px] xl:px-[43px]',
 
                   isPro ? 'bg-dark' : 'bg-white px-[29px] xl:px-[29px]',
                 )}
@@ -116,7 +114,7 @@ export function PricingCard({
           <div className="mb-7 flex items-baseline justify-between">
             <div
               className={cn(
-                'font-alt text-[64px] leading-none font-bold md:text-3xl lg:mb-[24px] xl:text-[74px]',
+                'font-alt text-[64px] leading-none font-bold md:text-3xl xl:text-[74px]',
                 isPro ? 'color-dark' : 'text-white',
               )}
             >
@@ -147,8 +145,8 @@ export function PricingCard({
                 <span
                   className={
                     isPro
-                      ? 'color-dark text-[16px] font-semibold uppercase md:text-xs lg:text-[16px]'
-                      : 'text-[16px] font-semibold uppercase md:text-xs lg:text-[16px]'
+                      ? 'color-dark text-[16px] font-semibold uppercase md:text-xs xl:text-[16px]'
+                      : 'text-[16px] font-semibold uppercase md:text-xs xl:text-[16px]'
                   }
                 >
                   {f.text}
@@ -158,16 +156,42 @@ export function PricingCard({
           </ul>
         </div>
       </div>
-      <div>
-        <BuyCta
-          source={`pricing:${title.toLowerCase()}`}
-          variant={ctaVariant}
-          className='z-10'
-          size="md"
-          full
-        >
-          {ctaText}
-        </BuyCta>
+      <div className='flex flex-col items-center'>
+        {isExpert ? (
+          <>
+           
+            <BuyCta
+              source={`pricing:${title.toLowerCase()}`}
+              variant="dark"
+              className="z-10 md:hidden" 
+              size="md"
+              full
+            >
+              {ctaText}
+            </BuyCta>
+
+           
+            <BuyCta
+              source={`pricing:${title.toLowerCase()}`}
+              variant="light"
+              className="z-10 hidden md:block" 
+              size="md"
+              full
+            >
+              {ctaText}
+            </BuyCta>
+          </>
+        ) : (
+          <BuyCta
+            source={`pricing:${title.toLowerCase()}`}
+            variant={ctaVariant} 
+            className="z-10"
+            size="md"
+            full
+          >
+            {ctaText}
+          </BuyCta>
+        )}
       </div>
     </div>
   )

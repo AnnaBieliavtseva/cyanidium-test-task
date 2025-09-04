@@ -58,9 +58,9 @@ export function Modal({
 
         <div
           className={cn(
-            'relative z-[71] mx-auto w-full h-full md:max-w-[410px] md:mt-20',
+            'relative z-[71] mx-auto h-full w-full md:mt-20 md:max-w-[410px]',
             'overflow-hidden rounded-[28px]',
-            ' [background:var(--color-bg)]',
+            '[background:var(--color-bg)]',
             'p-0',
             className,
           )}
@@ -70,19 +70,19 @@ export function Modal({
               {
                 preset: 'blue',
                 size: 'sm',
-                className: 'md:hidden top-40 -left-6',
+                className: 'md:hidden top-[213px] -left-[85px]',
               },
               {
                 preset: 'violet',
                 size: 'sm',
-                className: 'md:hidden bottom-24 -right-8',
+                className: 'md:hidden bottom-[40px] -right-[97px]',
               },
             ]}
           />
           <button
             onClick={onClose}
             aria-label="Закрыть"
-            className="absolute z-20 top-8 right-6 inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-md hover:bg-white/10"
+            className="absolute top-8 right-8 z-20 inline-flex h-8 w-8 cursor-pointer items-center justify-center rounded-md hover:bg-white/10"
           >
             <CrossIcon />
           </button>
@@ -92,7 +92,7 @@ export function Modal({
               {title}
             </h2>
           )}
-          <div className="relative z-10 h-full md:h-[491px]">{children}</div>
+          <div className="relative z-10 h-max md:h-[491px]">{children}</div>
         </div>
       </div>
     ) : null,

@@ -11,6 +11,7 @@ type Props = {
   full?: boolean
   children?: React.ReactNode
   rightBadge?: string
+  badgeClassName?:string
 }
 
 export function BuyCta({
@@ -21,6 +22,7 @@ export function BuyCta({
   full,
   children = 'Купить со скидкой',
   rightBadge,
+  badgeClassName,
 }: Props) {
   const { open } = useModal()
   return (
@@ -30,6 +32,7 @@ export function BuyCta({
       full={full}
       className={className}
       rightBadge={rightBadge}
+      badgeClassName={badgeClassName}
       onClick={() => open('purchase', { source })}
     >
       {children}

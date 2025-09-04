@@ -90,6 +90,10 @@
 }
 
 
+
+
+
+
 .font-logo {
   font-family: var(--font-logo);
 }
@@ -120,7 +124,7 @@
   -webkit-text-fill-color: transparent;
 }
 
-@media (width >= 768px) {
+/* @media (width >= 768px) {
   .md\:text-gradient {
     background: var(--gradient-primary);
     -webkit-background-clip: text;
@@ -129,7 +133,7 @@
     -webkit-text-fill-color: transparent;
     display: inline-block;
   }
-}
+} */
 
 html:focus-within {
   scroll-behavior: smooth;

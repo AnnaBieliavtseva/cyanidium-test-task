@@ -4,7 +4,7 @@ import { PromoBanner } from "./components/sections/promo-banner";
 
 export default function Home() {
   return (
-    <main className="grow py-6 md:py-17">
+    <main className="grow pt-[24px] pb-[48px] md:py-17">
       <Hero />
       <PricingSection />
       <PromoBanner />

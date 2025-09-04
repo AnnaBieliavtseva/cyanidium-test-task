@@ -11,7 +11,7 @@ type Variants =
   | 'modal'
   | 'gradientSecondary'
   | 'gradientHeader'
-type Sizes = 'sm' | 'md' | 'lg' | 'xl'
+type Sizes = 'sm' | 'md' | 'lg' | 'xl' | 'xxl'
 
 type BaseProps = {
   variant?: Variants
@@ -22,6 +22,7 @@ type BaseProps = {
   loading?: boolean
   className?: string
   children?: React.ReactNode
+  badgeClassName?: string
 }
 
 type AsButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>
@@ -37,6 +38,7 @@ export function Button(props: ButtonProps) {
     size = 'md',
     full,
     rightBadge,
+    badgeClassName,
     leftIcon,
     loading,
     className,
@@ -49,6 +51,7 @@ export function Button(props: ButtonProps) {
     md: 'pr-12',
     lg: 'pr-12',
     xl: 'pr-14',
+    xxl: 'pr-[29px]',
   }
 
   const base =
@@ -58,9 +61,10 @@ export function Button(props: ButtonProps) {
 
   const sizes: Record<Sizes, string> = {
     sm: 'h-9 px-4 text-xs',
-    md: 'h-[47px] lg:h-[42px] text-sm lg:text-base lg:w-[287px] leading-none',
+    md: 'h-[47px] md:h-[42px] text-sm lg:text-base md:w-[230px] xl:w-[287px] leading-none',
     lg: 'h-10 text-xs leading-5 w-[190px] ',
     xl: 'h-[60px] md:h-[74px] w-[313px]  text-base',
+    xxl: 'h-[68px] w-[268px] text-sm rounded-[40px] md:h-[74px] md:text-[22px]',
   }
 
   const variants: Record<Variants, string> = {
@@ -69,7 +73,7 @@ export function Button(props: ButtonProps) {
     light:
       'bg-[var(--color-fg)] text-[var(--color-bg)] hover:bg-white/90  box-shadow: 4px 6px 10px 4px rgba(167, 93, 243, 0.2);',
     modal:
-      'bg-[var(--color-fg)] text-[var(--color-bg)] rounded-[10px] border-4 border-[var(--gradient-primary)] hover:bg-white/90',
+      'bg-[var(--color-fg)] text-[var(--color-bg)] md:text-sm rounded-[10px] border-[2px] border border-transparent [background:linear-gradient(var(--color-fg),var(--color-fg))_padding-box,var(--gradient-secondary)_border-box] hover:bg-white/90',
     gradientSecondary:
       '[background:var(--gradient-secondary)] text-white hover:brightness-110',
     gradientHeader:
@@ -86,7 +90,13 @@ export function Button(props: ButtonProps) {
   )
 
   const Badge = rightBadge ? (
-    <span className="pointer-events-none absolute top-1/2 right-0 inline-grid h-full w-15 -translate-y-1/2 place-items-center rounded-[30px] bg-[var(--color-accent-500)] text-xl leading-none font-semibold text-white shadow-[0_4px_14px_rgba(0,0,0,.25)] md:h-18.5 md:w-18.5 md:rounded-[38px]">
+    <span
+      className={cn(
+        'bg-[var(--color-accent-500)] text - white pointer-events-none absolute top-1/2 right-0 inline-grid h-full w-15 -translate-y-1/2 place-items-center rounded-[30px] text-xl leading-none font-semibold md:h-18.5 md:w-18.5 md:rounded-[38px]',
+
+        badgeClassName,
+      )}
+    >
       {rightBadge}
     </span>
   ) : null

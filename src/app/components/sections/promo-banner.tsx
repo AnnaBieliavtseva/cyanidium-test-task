@@ -9,8 +9,8 @@ export function PromoBanner() {
   return (
     <section>
       <Container bleed>
-        <div className="relative overflow-hidden border border-[#36285D] bg-[var(--color-bg)] pb-[114px] md:min-h-[488px]">
-          <div className="absolute inset-y-0 left-0 z-0 hidden w-[38%] md:block">
+        <div className="relative overflow-hidden border border-transparent bg-[var(--color-bg)] px-[56px] py-[113px] [background:linear-gradient(var(--color-bg),var(--color-bg))_padding-box,var(--gradient-secondary)_border-box] md:min-h-[488px]">
+          <div className="absolute inset-y-0 left-0 z-10 hidden w-[513px] md:block">
             <Image
               src="/promo-banner.webp"
               alt=""
@@ -22,7 +22,7 @@ export function PromoBanner() {
           </div>
 
           <div
-            className="absolute inset-y-0 right-0 z-0 hidden w-[62%] md:block"
+            className="absolute inset-y-0 right-0 z-10 hidden w-[62%] md:block"
             style={{
               background:
                 'linear-gradient(115deg, #2a1b3f 0%, #DF93FF 25%, #7375FF 65%, #60C7FD 100%)',
@@ -31,10 +31,12 @@ export function PromoBanner() {
           />
 
           <div
-            className="absolute inset-0 z-[5] hidden md:block"
+            className="pointer-events-none absolute z-20 hidden rounded-full bg-[rgba(12,1,23,1)] blur-[335px] md:block"
             style={{
-              background:
-                'radial-gradient(60% 200% at 45% 50%, rgba(12,1,23,.92) 0%, rgba(12,1,23,.75) 45%, rgba(12,1,23,.35) 70%, rgba(12,1,23,0) 100%)',
+              width: '712px',
+              height: '1486px',
+              left: '290px',
+              top: '-122px',
             }}
             aria-hidden
           />
@@ -43,47 +45,40 @@ export function PromoBanner() {
           <ColorBlobs
             items={[
               {
-                preset: 'violet',
-                size: 'sm',
-                className: 'md:hidden -top-35 -left-25',
+                preset: 'gradient',
+                size: 'md',
+                className: 'md:hidden -top-[203px] -left-[221px]',
               },
               {
-                preset: 'violet',
-                size: 'sm',
-                className: 'md:hidden -bottom-35 -right-25',
+                preset: 'gradient',
+                size: 'md',
+                className: 'md:hidden -bottom-[203px] -right-[221px]',
               },
             ]}
           />
-          <div className="pointer-events-none absolute -right-[25%] -bottom-[75%] z-10 hidden -rotate-[35deg] md:block xl:-rotate-[45deg]">
-            <div className="marquee-mask rounded-full bg-gradient-to-r from-[#DF93FF] via-[#7375FF] to-[#5BDBFD] px-6 py-5 opacity-90 backdrop-blur">
+          <div className="pointer-events-none absolute top-[330px] left-[375px] z-20 hidden h-[97px] w-[1537px] -rotate-[35.5deg] md:block">
+            <div className="marquee-mask text-sm gradient-pricing-badge blur-[3px] rounded-full px-6 py-5 ">
               <div
-                className="marquee-anim font-logo flex min-w-[150%] text-[15px] font-semibold tracking-[.18em] whitespace-nowrap text-white will-change-transform"
+                className=" font-logo flex justify-center items-center text-[35px] text-center font-bold leading-none  text-white "
                 aria-hidden="true"
               >
-                <span className="flex pr-4">
-                  СЕКРЕТЫ ВИРУСНЫХ ВИДЕО • СЕКРЕТЫ ВИРУСНЫХ ВИДЕО • СЕКРЕТЫ
-                  ВИРУСНЫХ ВИДЕО •
-                </span>
-                <span className="flex pr-4">
-                  СЕКРЕТЫ ВИРУСНЫХ ВИДЕО • СЕКРЕТЫ ВИРУСНЫХ ВИДЕО • СЕКРЕТЫ
-                  ВИРУСНЫХ ВИДЕО •
-                </span>
+                <span className="flex text-center items-center justify-center"> СЕКРЕТЫ ВИРУСНЫХ ВИДЕО </span>
               </div>
             </div>
           </div>
           <div className="absolute inset-0 z-20 grid place-items-center">
-            <div className="text-center mt-[113px] md:mt-[60px] mb-[110px] max-w-[281px] grid w-full md:max-w-[534px]">
-              <h3 className="mb-5 text-xl font-bold uppercase md:text-[36px]">
+            <div className="grid w-full max-w-[281px] text-center md:mt-[60px] md:max-w-[534px]">
+              <h3 className="mb-5 text-xl leading-none font-bold uppercase md:text-[36px]">
                 УЗНАЙ, КАК СОЗДАВАТЬ
                 <br />
                 КОНТЕНТ, КОТОРЫЙ
                 <br />
-                <span className="md:text-gradient text-[var(--color-logo-dark)]">
+                <span className="md:text-gradient gradient-logo">
                   ПОКОРЯЕТ АУДИТОРИИ
                 </span>
               </h3>
 
-              <p className="mx-auto mb-[62px] text-sm font-medium text-white md:mb-[44px] md:text-2xl">
+              <p className="mx-auto mb-[62px] text-sm leading-none font-medium text-white md:mb-[44px] md:text-2xl">
                 Материалы, способные стать вирусными и охватить тысячи людей!
               </p>
 
@@ -91,8 +86,9 @@ export function PromoBanner() {
                 <BuyCta
                   source="promo-banner"
                   variant="gradientSecondary"
-                  size="xl"
+                  size="xxl"
                   rightBadge="-50%"
+                  badgeClassName="rounded-[32px] w-[63px] h-[68px]"
                   className="w-full"
                 >
                   Купить со скидкой

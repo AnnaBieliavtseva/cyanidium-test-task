@@ -86,14 +86,14 @@ export function PurchaseForm({ onDone }: { onDone?: () => void }) {
   return (
     <form
       onSubmit={onSubmit}
-      className="mx-auto flex h-full w-full max-w-[410px] flex-col justify-between px-6 pt-[157px] pb-8 md:rounded-[28px] md:border-5 md:border-[var(--color-logo-dark)] md:pt-[90px] md:pb-[73px]"
+      className="md:[max-h-491px] mx-auto flex items-center h-full w-full max-w-[410px] flex-col justify-between px-6 pt-[157px] pb-8 md:rounded-[28px] md:border-[var(--color-logo-dark)] md:pt-[90px] md:pb-[73px] md:shadow-[inset_4px_6px_10px_4px_rgba(167,93,243,0.2)]"
     >
-      <div>
+      <div className="md:-w-[310px]">
         <h3 className="mb-6 text-center text-2xl font-extrabold tracking-tight uppercase md:mb-9">
           УКАЖИТЕ СВОИ ДАННЫЕ
         </h3>
 
-        <div className="space-y-3.5">
+        <div className="mb-[40px] flex flex-col gap-[18px]">
           <Field>
             <Label htmlFor="name" className="sr-only">
               Имя
@@ -146,8 +146,15 @@ export function PurchaseForm({ onDone }: { onDone?: () => void }) {
         </div>
       </div>
 
-      <div className="mt-8">
-        <Button type="submit" variant="modal" size="lg" full loading={loading}>
+      <div>
+        <Button
+          type="submit"
+          variant="modal"
+          size="lg"
+          className="h-[50px] w-[310px] rounded-[10px]"
+          full
+          loading={loading}
+        >
           Отправить
         </Button>
       </div>
